@@ -1,23 +1,17 @@
-// This is the silent library checker - the vite/tsdown config and anything related. no root files
-// root level ts files that are part of library should be explicitely included here and excluded in the config.tsconfig
-/*
- * Emitted:
- * - JS : false
- * - Types : false
- */
-
 {
-    "extends": "@snailicid3/config/tsconfig.typecheck",
-    "exclude": ["./node_modules", "./scratch/*"],
-
-    "files": ["package.json"],
-
-    "include": [
-        "./.markdownlint-cli2.ts",
-        "./.lintstagedrc.ts",
-        "./*.ts",
-        "./src/**/*.ts",
-        "./**/*.test.ts",
-        "./bin/**/*.ts"
-    ]
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "lib": ["es2015", "dom"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["remotion.config.ts", "node_modules"]
 }
