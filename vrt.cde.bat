@@ -1,3 +1,3 @@
 cd..
-cd vcode-debug
+cd debug
 start Code.exe ../000.motion
