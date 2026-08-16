@@ -2,6 +2,7 @@ import { Composition } from "remotion";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
 import { Comp00, comp00Schema } from "./Comp00";
+import { Comp01, comp01Schema } from "./Comp01";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -20,6 +21,16 @@ export const RemotionRoot: React.FC = () => {
           titleText: "Now I tell you",
           titleColor: "#000000",
         }}
+      />
+      <Composition
+        id="Comp01"
+        component={Comp01}
+        durationInFrames={900}
+        fps={30}
+        width={1280}
+        height={720}
+        schema={comp01Schema}
+        defaultProps={{}}
       />
 
       <Composition
@@ -59,4 +70,3 @@ export const RemotionRoot: React.FC = () => {
     </>
   );
 };
-

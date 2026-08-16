@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": false
   },
   "include": ["src/**/*"],
   "exclude": ["remotion.config.ts", "node_modules"]

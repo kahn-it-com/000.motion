@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0b0b0d;
+    color: #ffffff;
+    user-select: none;
+    overflow: hidden;
+  }
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.font-anton {
+  font-family: 'Anton', sans-serif;
+}
+
+.font-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+/* Halftone dot pattern */
+.bg-halftone-red {
+  background-color: #d81e28;
+  background-image: radial-gradient(#101012 20%, transparent 20%), radial-gradient(#101012 20%, transparent 20%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}
+
+.bg-halftone-dark {
+  background-color: #121216;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 18%, transparent 18%), radial-gradient(rgba(255, 255, 255, 0.12) 18%, transparent 18%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}
+
+.bg-comic-lines {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 12px,
+    rgba(0, 0, 0, 0.15) 12px,
+    rgba(0, 0, 0, 0.15) 24px
+  );
+}
+
+.clip-slanted-left {
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%);
+}
+
+.clip-slanted-right {
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.clip-parallelogram {
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
+
+.clip-badge {
+  clip-path: polygon(0 0, 94% 0, 100% 100%, 0% 100%);
+}
+
+.clip-card-angled {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+}
+
+/* Persona 3D text shadow layers */
+.text-shadow-p5-black {
+  text-shadow: 4px 4px 0px #000, 6px 6px 0px rgba(0, 0, 0, 0.7);
+}
+
+.text-shadow-p5-red {
+  text-shadow: 3px 3px 0px #ff0033, 6px 6px 0px #000;
+}
+
+.text-shadow-p5-white {
+  text-shadow: 3px 3px 0px #ffffff, 6px 6px 0px #000;
+}
+
+/* Jagged edge paper look */
+.paper-jagged {
+  filter: drop-shadow(8px 10px 0px #000000);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e0e12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e61a24;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff2a36;
+}
