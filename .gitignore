@@ -103,8 +103,7 @@ types/
 # Vuepress build output
 .vuepress/dist
 
-# ZIP files
-*.zip
+
 
 # Finder's configuration files (Mac).
 .DS_Store
