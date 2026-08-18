@@ -17,15 +17,22 @@ export const ActiveProtocolCard: React.FC<ActiveProtocolCardProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  const translateY = interpolate(frame, [0, 20], [50, 0], {
+  const translateY = interpolate(frame, [0, 25], [60, 0], {
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
 
-  const rotate = interpolate(frame, [0, 40], [-5, 0], {
+  const rotate = interpolate(frame, [0, 35], [-6, 0], {
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
+
+  const cardOpacity = interpolate(frame, [0, 15], [0, 1], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+
+  const starPulse = interpolate(frame % 45, [0, 22, 45], [1, 1.2, 1]);
 
   const handleClick = () => {
     sound.playSlash();
@@ -45,6 +52,7 @@ export const ActiveProtocolCard: React.FC<ActiveProtocolCardProps> = ({
       onClick={handleClick}
       style={{
         transform: `translateY(${translateY}px) rotate(${rotate}deg)`,
+        opacity: cardOpacity,
       }}
     >
       {/* Persona layered offset white shadow backplate */}
@@ -81,7 +89,10 @@ export const ActiveProtocolCard: React.FC<ActiveProtocolCardProps> = ({
 
           {/* Golden Yellow Star Icon in Top Right */}
           <div className="flex items-center gap-3">
-            <div className="p-1 text-[#facc15] hover:scale-125 transition-transform">
+            <div
+              className="p-1 text-[#facc15] hover:scale-125 transition-transform"
+              style={{ transform: `scale(${starPulse})` }}
+            >
               <Star
                 size={34}
                 className="fill-[#facc15] stroke-[#facc15] drop-shadow-[0_2px_8px_rgba(250,204,21,0.5)]"

@@ -12,7 +12,12 @@ interface DeepRunCardProps {
 export const DeepRunCard: React.FC<DeepRunCardProps> = ({ protocol, onSelect }) => {
   const frame = useCurrentFrame();
 
-  const translateX = interpolate(frame, [0, 20], [50, 0], {
+  const translateX = interpolate(frame, [5, 25], [60, 0], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+
+  const opacity = interpolate(frame, [5, 20], [0, 1], {
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
@@ -28,6 +33,7 @@ export const DeepRunCard: React.FC<DeepRunCardProps> = ({ protocol, onSelect }) 
       onClick={handleClick}
       style={{
         transform: `translateX(${translateX}px)`,
+        opacity,
       }}
     >
       <div

@@ -2,6 +2,7 @@ import React from 'react';
 import { Shield, Sparkles, Plus, Skull, Send, Users, Compass, Calendar, Flame, Volume2, VolumeX } from 'lucide-react';
 import { ActiveTab } from '../types';
 import { sound } from '../utils/audio';
+import { useCurrentFrame, interpolate } from 'remotion';
 
 interface TopNavProps {
   currentTab: ActiveTab;
@@ -22,6 +23,20 @@ export const TopNav: React.FC<TopNavProps> = ({
   soundEnabled = true,
   onToggleSound,
 }) => {
+  const frame = useCurrentFrame();
+
+  const navTranslateY = interpolate(frame, [0, 20], [-80, 0], {
+    extrapolateRight: 'clamp',
+    extrapolateLeft: 'clamp',
+  });
+
+  const navOpacity = interpolate(frame, [0, 15], [0, 1], {
+    extrapolateRight: 'clamp',
+    extrapolateLeft: 'clamp',
+  });
+
+  const pulseScale = interpolate(frame % 30, [0, 15, 30], [1, 1.3, 1]);
+
   const handleTabClick = (tab: ActiveTab) => {
     sound.playClick();
     onSelectTab(tab);
@@ -31,6 +46,10 @@ export const TopNav: React.FC<TopNavProps> = ({
     <header
       id="metaverse-top-nav"
       className="relative z-30 w-full h-[88px] px-12 flex items-center justify-between border-b border-black/40 bg-black/40 backdrop-blur-sm select-none"
+      style={{
+        transform: `translateY(${navTranslateY}px)`,
+        opacity: navOpacity,
+      }}
     >
       {/* Left Brand Identity with Persona Angle */}
       <div className="flex items-center gap-6">
@@ -60,7 +79,10 @@ export const TopNav: React.FC<TopNavProps> = ({
         {/* Status Indicator */}
         <div className="hidden xl:flex items-center gap-3 pl-6 border-l border-white/10 text-xs font-mono">
           <div className="flex items-center gap-1.5 text-[#22c55e]">
-            <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-ping" />
+            <span
+              className="w-2.5 h-2.5 rounded-full bg-[#22c55e] inline-block shadow-[0_0_8px_#22c55e]"
+              style={{ transform: `scale(${pulseScale})` }}
+            />
             <span className="font-bold">COGNITIVE SYNC 99.4%</span>
           </div>
           <span className="text-neutral-600">|</span>

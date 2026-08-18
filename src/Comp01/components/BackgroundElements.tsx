@@ -14,6 +14,23 @@ export const BackgroundElements: React.FC = () => {
     extrapolateLeft: "clamp",
   });
 
+  const star1Rotate = interpolate(frame, [0, 900], [12, 48], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+
+  const star1Scale = interpolate(frame % 90, [0, 45, 90], [1, 1.15, 1]);
+
+  const star2Rotate = interpolate(frame, [0, 900], [-12, -48], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+
+  const halftoneOffsetY = interpolate(frame, [0, 900], [0, 100], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+
   return (
     <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a0a0c]" style={{ transform: `translateX(${translateX}px) rotate(${rotate}deg)` }}>
       {/* Dynamic Persona Red & Black Split Background */}
@@ -53,6 +70,7 @@ export const BackgroundElements: React.FC = () => {
         style={{
           backgroundImage: 'radial-gradient(black 1px, transparent 1px)',
           backgroundSize: '12px 12px',
+          backgroundPosition: `0px ${halftoneOffsetY}px`,
         }}
       />
 
@@ -69,10 +87,16 @@ export const BackgroundElements: React.FC = () => {
       </div>
 
       {/* Animated star pattern (subtle floating stars) */}
-      <div className="absolute top-[10%] left-[20%] text-white/10 text-9xl font-black rotate-12 z-0 animate-pulse">
+      <div
+        className="absolute top-[10%] left-[20%] text-white/10 text-9xl font-black z-0"
+        style={{ transform: `rotate(${star1Rotate}deg) scale(${star1Scale})` }}
+      >
         ★
       </div>
-      <div className="absolute bottom-[20%] right-[10%] text-[#d81e28]/20 text-9xl font-black -rotate-12 z-20">
+      <div
+        className="absolute bottom-[20%] right-[10%] text-[#d81e28]/20 text-9xl font-black z-20"
+        style={{ transform: `rotate(${star2Rotate}deg)` }}
+      >
         ★
       </div>
     </div>

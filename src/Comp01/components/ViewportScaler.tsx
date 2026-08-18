@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
+import { useVideoConfig } from 'remotion';
 
 interface ViewportScalerProps {
   children: React.ReactNode;
@@ -7,34 +8,16 @@ interface ViewportScalerProps {
 export const ViewportScaler: React.FC<ViewportScalerProps> = ({
   children,
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState<number>(1);
+  const { width, height } = useVideoConfig();
 
-  useEffect(() => {
-    const calculateScale = () => {
-      if (!containerRef.current) return;
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-
-      const scaleX = windowWidth / 1920;
-      const scaleY = windowHeight / 1080;
-      const newScale = Math.min(scaleX, scaleY);
-      setScale(newScale);
-    };
-
-    calculateScale();
-    window.addEventListener('resize', calculateScale);
-
-    return () => {
-      window.removeEventListener('resize', calculateScale);
-    };
-  }, []);
+  const scaleX = width / 1920;
+  const scaleY = height / 1080;
+  const scale = Math.min(scaleX, scaleY);
 
   return (
     <div
-      ref={containerRef}
       id="viewport-container"
-      className="relative w-screen h-screen bg-[#070709] overflow-hidden flex items-center justify-center select-none"
+      className="relative w-full h-full bg-[#070709] overflow-hidden flex items-center justify-center select-none"
     >
       {/* 1920 x 1080 Fixed Canvas Frame with hardware acceleration */}
       <div
@@ -43,7 +26,6 @@ export const ViewportScaler: React.FC<ViewportScalerProps> = ({
         style={{
           transform: `scale(${scale})`,
           transformOrigin: 'center center',
-          transition: 'transform 0.15s ease-out',
         }}
       >
         {children}

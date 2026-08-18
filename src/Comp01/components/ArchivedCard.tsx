@@ -2,6 +2,7 @@ import React from 'react';
 import { History, CheckCircle2 } from 'lucide-react';
 import { Protocol } from '../types';
 import { sound } from '../utils/audio';
+import { useCurrentFrame, interpolate } from 'remotion';
 
 interface ArchivedCardProps {
   protocol: Protocol;
@@ -9,6 +10,18 @@ interface ArchivedCardProps {
 }
 
 export const ArchivedCard: React.FC<ArchivedCardProps> = ({ protocol, onSelect }) => {
+  const frame = useCurrentFrame();
+
+  const translateY = interpolate(frame, [10, 30], [50, 0], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+
+  const opacity = interpolate(frame, [10, 25], [0, 1], {
+    extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
+  });
+
   const handleClick = () => {
     sound.playSlash();
     onSelect(protocol);
@@ -19,6 +32,10 @@ export const ArchivedCard: React.FC<ArchivedCardProps> = ({ protocol, onSelect }
       id="card-archived-container"
       className="relative group cursor-pointer transition-transform duration-200 hover:scale-[1.02] focus:outline-none"
       onClick={handleClick}
+      style={{
+        transform: `translateY(${translateY}px)`,
+        opacity,
+      }}
     >
       {/* Dark Slate Layered Backplate Shadow */}
       <div
