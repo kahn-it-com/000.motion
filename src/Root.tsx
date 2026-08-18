@@ -3,6 +3,7 @@ import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
 import { Comp00, comp00Schema } from "./Comp00";
 import { Comp01, comp01Schema } from "./Comp01";
+import { Comp04, comp04Schema } from "./Comp04";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -30,6 +31,17 @@ export const RemotionRoot: React.FC = () => {
         width={1280}
         height={720}
         schema={comp01Schema}
+        defaultProps={{}}
+      />
+
+      <Composition
+        id="Comp04"
+        component={Comp04}
+        durationInFrames={10403}
+        fps={30}
+        width={1280}
+        height={720}
+        schema={comp04Schema}
         defaultProps={{}}
       />
 
