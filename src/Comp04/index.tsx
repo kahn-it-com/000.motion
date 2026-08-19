@@ -1,44 +1,32 @@
 import React from "react";
-import { AbsoluteFill, Audio, Loop, Series, staticFile, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from "remotion";
 import { z } from "zod";
 
-import { FadeIn } from "./FadeIn";
-import { Toon } from "./Toon";
+export const comp04Schema = z.object({});
 
-export const comp00Schema = z.object({
-  titleText: z.string(),
-  titleColor: z.string(),
-});
+export type Comp04Props = z.infer<typeof comp04Schema>;
 
-export type Comp00Props = z.infer<typeof comp00Schema>;
-
-export const Comp00: React.FC<Comp00Props> = () => {
+export const Comp04: React.FC<Comp04Props> = () => {
   const { durationInFrames, fps } = useVideoConfig();
-  const secondSeqDuration = Math.max(1, durationInFrames - 100);
 
-  // 30.4s clip duration = 912 frames at 30 fps
-  const audioDurationInFrames = Math.round(30.4 * fps);
+  const threeSecondMark = 3 * fps;
+  const ninetySecondMark = 90 * fps;
 
   return (
-    <AbsoluteFill style={{ backgroundColor: "white" }}>
-      <Loop durationInFrames={audioDurationInFrames}>
-        <Audio src={staticFile("wav/000.wav")} />
-      </Loop>
-      <Series>
-        <Series.Sequence durationInFrames={100}>
-          <AbsoluteFill style={{ backgroundColor: "white" }}>
-            <FadeIn />
-          </AbsoluteFill>
-        </Series.Sequence>
+    <AbsoluteFill>
+      <Audio src={staticFile("mp3/2026B_Rev03_acousticDrums_003.mp3")} />
 
-        <Series.Sequence durationInFrames={secondSeqDuration}>
-          <AbsoluteFill style={{ backgroundColor: "white" }}>
-            <Loop durationInFrames={50}>
-              <Toon />
-            </Loop>
-          </AbsoluteFill>
-        </Series.Sequence>
-      </Series>
+      <Sequence from={0} durationInFrames={threeSecondMark}>
+        <AbsoluteFill style={{ backgroundColor: "white" }} />
+      </Sequence>
+
+      <Sequence from={threeSecondMark} durationInFrames={ninetySecondMark - threeSecondMark}>
+        <AbsoluteFill style={{ backgroundColor: "black" }} />
+      </Sequence>
+
+      <Sequence from={ninetySecondMark} durationInFrames={durationInFrames - ninetySecondMark}>
+        <AbsoluteFill style={{ backgroundColor: "red" }} />
+      </Sequence>
     </AbsoluteFill>
   );
 };

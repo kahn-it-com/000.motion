@@ -2,8 +2,8 @@ import React from "react";
 import { AbsoluteFill, Audio, Loop, Series, staticFile, useVideoConfig } from "remotion";
 import { z } from "zod";
 
-import { FadeIn } from "./FadeIn";
-import { Toon } from "./Toon";
+import { FadeIn } from "../Comp00/FadeIn";
+import { Toon } from "../Comp00/Toon";
 
 export const comp00Schema = z.object({
   titleText: z.string(),
