@@ -17,11 +17,11 @@ export const Comp04: React.FC<Comp04Props> = () => {
       <Audio src={staticFile("mp3/2026B_Rev03_acousticDrums_003.mp3")} />
 
       <Sequence from={0} durationInFrames={threeSecondMark}>
-        <AbsoluteFill style={{ backgroundColor: "white" }} />
+        <AbsoluteFill style={{ backgroundColor: "yellow" }} />
       </Sequence>
 
       <Sequence from={threeSecondMark} durationInFrames={ninetySecondMark - threeSecondMark}>
-        <AbsoluteFill style={{ backgroundColor: "black" }} />
+        <AbsoluteFill style={{ backgroundColor: "green" }} />
       </Sequence>
 
       <Sequence from={ninetySecondMark} durationInFrames={durationInFrames - ninetySecondMark}>

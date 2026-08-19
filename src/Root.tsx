@@ -4,6 +4,10 @@ import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
 import { Comp00, comp00Schema } from "./Comp00";
 import { Comp01, comp01Schema } from "./Comp01";
 import { Comp04, comp04Schema } from "./Comp04";
+import { Comp05, comp05Schema } from "./Comp05";
+import { Comp06, comp06Schema } from "./Comp06";
+import { Comp07, comp07Schema } from "./Comp07";
+import { Comp08, comp08Schema } from "./Comp08";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -38,9 +42,49 @@ export const RemotionRoot: React.FC = () => {
         component={Comp04}
         durationInFrames={Math.round(346.752 * 30)}
         fps={30}
-        width={1280}
-        height={720}
+        width={720}
+        height={1280}
         schema={comp04Schema}
+        defaultProps={{}}
+      />
+      <Composition
+        id="Comp05"
+        component={Comp05}
+        durationInFrames={Math.round((346.752 - 91) * 30)}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={comp05Schema}
+        defaultProps={{}}
+      />
+      <Composition
+        id="Comp06"
+        component={Comp06}
+        durationInFrames={Math.round((346.752 - 181) * 30)}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={comp06Schema}
+        defaultProps={{}}
+      />
+      <Composition
+        id="Comp07"
+        component={Comp07}
+        durationInFrames={Math.max(Math.round(90 * 30), Math.round((346.752 - 271) * 30))}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={comp07Schema}
+        defaultProps={{}}
+      />
+      <Composition
+        id="Comp08"
+        component={Comp08}
+        durationInFrames={Math.max(Math.round(90 * 30), Math.round((346.752 - 361) * 30))}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={comp08Schema}
         defaultProps={{}}
       />
 
